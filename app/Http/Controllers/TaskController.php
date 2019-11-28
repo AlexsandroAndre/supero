@@ -14,6 +14,7 @@ class TaskController extends Controller
      */
     public function index()
     {
+        //Task::where('status', 0)->orderBy('id', 'DESC')->get()->jsonSerialize()
         return response(Task::where('status', 0)->orderBy('id', 'DESC')->get()->jsonSerialize());
     }
 
@@ -90,7 +91,7 @@ class TaskController extends Controller
      */
     public function edit(Task $task)
     {
-        //
+        var_dump($task);
     }
 
     /**
@@ -108,10 +109,18 @@ class TaskController extends Controller
             $today = date('Y-m-d');
 
             $t = Task::find($data['id']);
-            $t->status = $data['status'];
+            if(array_key_exists('status', $data))
+            {
+                $t->status = $data['status'];
+            }
+            if(array_key_exists('description', $data))
+            {
+                $t->description = $data['description'];
+            }
+
             $t->finished = $today;
             $t->update();
-            return response()->json(['data' => $task,
+            return response()->json(['data' => $t,
                 'message' => 'Tarefa concluída com sucesso.'], 201);
 		}
 		catch (\Exception $e)
@@ -132,6 +141,20 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
-        //
+        try
+		{
+            $task = Task::find($task->id);
+            $task->delete();
+
+            return response()->json(['message' => 'Tarefa deletada com sucesso.'], 201);
+		}
+		catch (\Exception $e)
+		{
+            if(config('app.debug'))
+            {
+    			return response()->json($e->getMessage(), 400);
+    		}
+			return response()->json('Houve um erro ao deletar a tarefa.', 400);
+		}
     }
 }

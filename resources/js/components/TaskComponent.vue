@@ -5,7 +5,7 @@
                 <tbody>
                     <tr>
                         <td width="5%">
-                            <input type="checkbox" :checked="status === 1" ref="testesom" :id="this.id" :value="this.status" v-bind:checked="selected" @change="check($event)" aria-label="Chebox para permitir input text">
+                            <input type="checkbox" :checked="status === 1" ref="testesom" :id="this.id" :value="this.status" @change="check($event)" aria-label="Chebox para permitir input text">
                         </td>
                         <td width="83%"><h2>{{ name | properCase }}</h2></td>
                         <td class="td-left">
@@ -16,35 +16,42 @@
                 </tbody>
             </table>
         </div>
+        <modal v-show="isModalVisible"  @close="closeModal"/>
     </div>
 </template>
 
 <script>
+  import modal from './ModalComponent.vue';
   export default {
-    computed: {
-      selected(e){
-          //console.log(e);
-          //console.log('status', this.$refs);
-      }
-    },
     data() {
       return {
         tasks: [],
         working: false,
-        testesom: false
+        testesom: false,
+        isModalVisible: false,
       }
     },
     methods: {
       update(val) {
           console.log('task update', val);
-        //this.$emit('update', this.id, val.target.selectedOptions[0].value);
+         //this.$emit('update', this.id, val.target.selectedOptions[0].value);
+         this.showModal();
       },
       del() {
         this.$emit('delete', this.id);
       },
        check: function(e) {
           this.$parent.status(this.id, (this.$props.status == 0) ? 1 : 0);
-       }
+       },
+       showModal() {
+        this.isModalVisible = true;
+      },
+      closeModal() {
+        this.isModalVisible = false;
+      }
+    },
+    components: {
+      modal
     },
     props: ['id', 'name', 'description', 'remember', 'finished', 'status'],
     filters: {
