@@ -6,12 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Task extends Model
 {
-    protected $fillable = ['category_id', 'description', 'remember', 'finished', 'status'];
+    protected $fillable = ['name', 'description', 'remember', 'finished', 'status'];
 
-    public $timestamps = false;
-
-    public function category()
-    {
-    	return $this->belongsTo('App\Category');
-    }
+    public $timestamps = true;
 }
