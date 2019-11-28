@@ -6,68 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link href="css/app.css" rel="stylesheet">
-    <title>Task</title>
-    <style>
-        body{
-            background-color: #EAEAEC;
-            color: #001830;
-        }
-        .heading {
-            width: 100%;
-            padding: 5px;
-            height: 60px;
-            margin-bottom: 5px;
-        }
-        .heading, h1{
-            color: #001830;
-            font-weight: bold;
-        }
-        .header-form {
-            width: 50%;
-            margin: auto;
-            width: 50%;
-        }
-        img {
-            vertical-align: middle;
-            border-style: none;
-            width: 213px;
-        }
-
-        .task{
-            color: #001830;
-            margin-top: 10px;
-        }
-        table{
-            margin:0;
-            padding:0;
-            border-collapse:collapse;
-            background:#fff;
-            width:100%;
-            text-align:left;
-        }
-
-        td,th{
-            padding : 10px;
-            border-top : 1px solid rgba(0,0,0,0.1);
-            border-bottom : 1px solid rgba(0,0,0,0.1);
-        }
-
-        tbody tr:hover{
-            background: #F0F8FD;
-            transform: scale(1,1);
-            -webkit-transform: scale(1,1);
-            -moz-transform: scale(1,1);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-            -webkit-box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-            -moz-box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-        }
-        .td-left{
-            text-align: right;
-        }
-        .modal-body > h3 {
-            color: #001830;
-        }
-    </style>
+    <title>Supero</title>
 </head>
 <body>
     <main role="main" class="container">
@@ -114,7 +53,6 @@
             </div>
         </div>
     </main>
-    <!--<script src="js/app.js"></script>-->
     <script src="js/supero.js"></script>
 
 </body>

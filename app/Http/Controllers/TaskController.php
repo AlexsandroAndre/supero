@@ -14,7 +14,6 @@ class TaskController extends Controller
      */
     public function index()
     {
-        //Task::where('status', 0)->orderBy('id', 'DESC')->get()->jsonSerialize()
         return response(Task::where('status', 0)->orderBy('id', 'DESC')->get()->jsonSerialize());
     }
 
@@ -91,7 +90,7 @@ class TaskController extends Controller
      */
     public function edit(Task $task)
     {
-        var_dump($task);
+        //var_dump($task);
     }
 
     /**
